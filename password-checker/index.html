@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Strength Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>🔐 Password Strength Checker</h1>
+
+    <input type="password" id="password" placeholder="Enter your password" oninput="checkPassword()">
+
+    <div class="strength-meter">
+        <div id="strength-bar"></div>
+    </div>
+
+    <p id="strength-text">Strength: </p>
+    <p id="crack-time"></p>
+
+    <ul id="suggestions"></ul>
+
+    <button onclick="generatePassword()">Generate Strong Password</button>
+    <p id="generated-password"></p>
+</div>
+
+<!-- Library of zxcvbn for password strength estimation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>

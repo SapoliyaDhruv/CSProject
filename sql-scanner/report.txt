@@ -1,0 +1,8 @@
+[SAFE] No issue detected for 'email' using ' OR '1'='1
+[SAFE] No issue detected for 'email' using ' OR 1=1--
+[SAFE] No issue detected for 'email' using " OR ""="
+[SAFE] No issue detected for 'email' using ' OR 'a'='a
+[SAFE] No issue detected for 'password' using ' OR '1'='1
+[SAFE] No issue detected for 'password' using ' OR 1=1--
+[SAFE] No issue detected for 'password' using " OR ""="
+[SAFE] No issue detected for 'password' using ' OR 'a'='a

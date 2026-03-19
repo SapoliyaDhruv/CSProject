@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection System</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="background-grid"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo">🛡️</div>
+                    <div>
+                        <h1>Phishing Guard</h1>
+                        <p class="tagline">Advanced Security Analysis</p>
+                    </div>
+                </div>
+                <div class="security-badge">
+                    <span class="badge-dot"></span>
+                    System Active
+                </div>
+            </div>
+        </header>
+
+        <main class="scanner">
+            <div class="tabs-wrapper">
+                <div class="tabs-container">
+                    <button class="tab-btn active" onclick="showTab('url')" data-tab="url">
+                        <span class="tab-icon">🌐</span>
+                        <span>URL Scan</span>
+                    </button>
+                    <button class="tab-btn" onclick="showTab('email')" data-tab="email">
+                        <span class="tab-icon">📧</span>
+                        <span>Email Scan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- URL Tab -->
+            <div id="urlTab" class="tab-content active">
+                <form method="POST" class="scan-form">
+                    <input type="hidden" name="mode" value="url">
+                    
+                    <div class="form-group">
+                        <label for="url-input">Enter Website URL</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="url" 
+                                id="url-input"
+                                name="url" 
+                                placeholder="https://example.com" 
+                                required
+                                class="scan-input"
+                            >
+                            <span class="input-icon">🔗</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="scan-button">
+                        <span>Scan Website</span>
+                        <span class="button-icon">→</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Email Tab -->
+            <div id="emailTab" class="tab-content">
+                <form method="POST" class="scan-form">
+                    <input type="hidden" name="mode" value="email">
+                    
+                    <div class="form-group">
+                        <label for="email-input">Paste Email Content</label>
+                        <textarea 
+                            id="email-input"
+                            name="email_text" 
+                            placeholder="Paste your entire email here including headers..." 
+                            required
+                            class="scan-textarea"
+                        ></textarea>
+                    </div>
+                    
+                    <button type="submit" class="scan-button">
+                        <span>Scan Email</span>
+                        <span class="button-icon">→</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Result Section -->
+            {% if result %}
+            <div class="result-container">
+                <div class="result-box {% if 'Safe' in result or 'Legitimate' in result %}safe{% else %}threat{% endif %}">
+                    <div class="result-header">
+                        <div class="result-icon">
+                            {% if 'Safe' in result or 'Legitimate' in result %}✓{% else %}⚠{% endif %}
+                        </div>
+                        <div class="result-content">
+                            <h2 class="result-title">{{ result }}</h2>
+                            <p class="result-subtitle">
+                                {% if 'Safe' in result or 'Legitimate' in result %}
+                                    This website appears to be safe and legitimate. No suspicious indicators detected.
+                                {% else %}
+                                    This website shows suspicious indicators. We recommend not entering sensitive information.
+                                {% endif %}
+                            </p>
+                            {% if confidence %}
+                            <div class="confidence-meter">
+                                <div class="confidence-label">
+                                    <span>Confidence Level</span>
+                                    <span class="confidence-value">{{ confidence }}%</span>
+                                </div>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </main>
+
+        <footer class="footer">
+            <p>🔒 Your security is our priority. All scans are processed securely.</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active state from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Highlight selected button
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        }
+
+        // Smooth scroll for results
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function() {
+                setTimeout(() => {
+                    const resultBox = document.querySelector('.result-container');
+                    if (resultBox) {
+                        resultBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

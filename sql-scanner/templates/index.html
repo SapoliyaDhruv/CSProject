@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security Scanner</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🔐 Security Scanner</h1>
+
+    <div class="tabs">
+        <button onclick="showForm()">Form Scan</button>
+        <button onclick="showAPI()">API Scan</button>
+    </div>
+
+    <!-- FORM SCAN -->
+    <form method="POST" id="formScan">
+        <input type="hidden" name="mode" value="form">
+        <input type="text" name="url" placeholder="Enter Website URL" required>
+        <button type="submit">Scan Forms</button>
+    </form>
+
+    <!-- API SCAN -->
+    <form method="POST" id="apiScan" style="display:none;">
+        <input type="hidden" name="mode" value="api">
+
+        <input type="text" name="api_url" placeholder="API URL" required>
+
+        <select name="api_method">
+            <option value="POST">POST</option>
+            <option value="GET">GET</option>
+        </select>
+
+        <textarea name="api_body" placeholder='{"email":"test","password":"123"}'></textarea>
+
+        <button type="submit">Scan API</button>
+    </form>
+
+    <!-- RESULTS -->
+    {% if results %}
+    <div class="results">
+        {% for r in results %}
+            <div class="card {{ r.type }}">
+                {{ r.msg }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+function showForm(){
+    document.getElementById("formScan").style.display = "block";
+    document.getElementById("apiScan").style.display = "none";
+}
+
+function showAPI(){
+    document.getElementById("formScan").style.display = "none";
+    document.getElementById("apiScan").style.display = "block";
+}
+</script>
+
+</body>
+</html>

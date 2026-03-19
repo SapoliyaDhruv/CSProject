@@ -1,0 +1,18 @@
+﻿# Large dataset files
+phishing-detector/dataset/*.csv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Model files
+*.pkl
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

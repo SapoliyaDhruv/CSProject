@@ -1,0 +1,10 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:client": "npm run dev --prefix client",
+    "dev:mobile": "npm start --prefix mobile"
+  }
+}

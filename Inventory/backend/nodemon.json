@@ -1,0 +1,4 @@
+{
+  "watch": ["src/"],
+  "ignore": ["auto-backup*.json", "backups/**", "*.json"]
+}

@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "Inventory",
+    "slug": "inventory-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Allow Inventory to scan food item barcodes."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": [
+        "CAMERA"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Inventory to scan food item barcodes."
+        }
+      ],
+      "expo-sharing",
+      "expo-status-bar"
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
